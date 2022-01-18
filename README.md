@@ -1,6 +1,5 @@
 # Problems-Stopwatch
-## It's a simple tool that help me and my team in solving problems by tracking the time for every 
-## phase that we made while solving a program.
+## It's a simple tool that help me and my team in solving problems by tracking the time for every phase that we made while solving. 
 
 ## The idea of the program depends in main on Dr. Mustafa Saad's sheet and stratigies.
 
