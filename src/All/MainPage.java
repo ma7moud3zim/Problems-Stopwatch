@@ -130,29 +130,24 @@ public class MainPage extends javax.swing.JFrame {
         ReadingPanel.setLayout(ReadingPanelLayout);
         ReadingPanelLayout.setHorizontalGroup(
             ReadingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ReadingPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ReadingTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(ReadingPanelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(NextThink, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(ReadingPanelLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(Reading, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(ReadingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(NextThink, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Reading, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ReadingTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         ReadingPanelLayout.setVerticalGroup(
             ReadingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ReadingPanelLayout.createSequentialGroup()
-                .addGap(1, 1, 1)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(Reading, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ReadingTimer)
-                .addGap(31, 31, 31)
+                .addGap(34, 34, 34)
                 .addComponent(NextThink, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(41, 41, 41))
         );
 
         ThinkingPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -175,26 +170,24 @@ public class MainPage extends javax.swing.JFrame {
         ThinkingPanel.setLayout(ThinkingPanelLayout);
         ThinkingPanelLayout.setHorizontalGroup(
             ThinkingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ThinkingPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ThinkingTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(ThinkingPanelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(ThinkingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(ThinkingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(NextCod, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Reading9))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(Reading9)
+                    .addComponent(ThinkingTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         ThinkingPanelLayout.setVerticalGroup(
             ThinkingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ThinkingPanelLayout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(Reading9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ThinkingTimer)
-                .addGap(31, 31, 31)
+                .addGap(34, 34, 34)
                 .addComponent(NextCod, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addGap(41, 41, 41))
         );
 
         CodingPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -220,26 +213,25 @@ public class MainPage extends javax.swing.JFrame {
             .addGroup(CodingPanelLayout.createSequentialGroup()
                 .addGroup(CodingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CodingPanelLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(NextDeb, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(CodingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Reading10, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CodingTimer)))
                     .addGroup(CodingPanelLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(CodingTimer))
-                    .addGroup(CodingPanelLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(Reading10, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addComponent(NextDeb, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         CodingPanelLayout.setVerticalGroup(
             CodingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CodingPanelLayout.createSequentialGroup()
-                .addGap(3, 3, 3)
+                .addGap(20, 20, 20)
                 .addComponent(Reading10, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CodingTimer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(NextDeb, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         DebugPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -269,19 +261,17 @@ public class MainPage extends javax.swing.JFrame {
                         .addComponent(End, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DebugPanelLayout.createSequentialGroup()
-                        .addComponent(DebugTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(DebugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DebugTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Reading11))
                         .addContainerGap())))
-            .addGroup(DebugPanelLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(Reading11)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         DebugPanelLayout.setVerticalGroup(
             DebugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DebugPanelLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addGap(22, 22, 22)
                 .addComponent(Reading11, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(DebugTimer)
                 .addGap(35, 35, 35)
                 .addComponent(End, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,11 +333,14 @@ public class MainPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void StartingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartingBtnActionPerformed
+     timerReading.stop();
+     timerThinking.stop();
+     timerCoding.stop();
+     timerDebug.stop();
      ReadingTimer.setText("00:00");
      ThinkingTimer.setText("00:00");
      CodingTimer.setText("00:00");
      DebugTimer.setText("00:00");
-
         
      elapsedTime = 0;
      seconds = 0;
@@ -379,7 +372,10 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_NextDebActionPerformed
 
     private void EndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EndActionPerformed
-    timerDebug.stop();    
+    timerReading.stop();
+    timerThinking.stop();
+    timerCoding.stop();
+    timerDebug.stop();
      elapsedTime = 0;
      seconds = 0;
      minutes =0;
