@@ -3,6 +3,6 @@
 
 ## The idea of the program depends in main on Dr. Mustafa Saad's sheet and stratigies.
 
-##screen shot from the tool:
+## screen shot from the tool:
 
 ![image](https://user-images.githubusercontent.com/72660571/149987578-e65390e5-9cc6-4919-b29d-31392a65a3d3.png)
