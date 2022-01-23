@@ -4,6 +4,15 @@ package All;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.Timer;
 
 public class MainPage extends javax.swing.JFrame {
@@ -12,6 +21,7 @@ public class MainPage extends javax.swing.JFrame {
      long minutes =0;
      String seconds_string = String.format("%02d", seconds);
      String minutes_string = String.format("%02d", minutes);
+     public ring ala;
      
   Timer timerReading = new Timer(1000, new ActionListener() {
     @Override                   
@@ -19,6 +29,15 @@ public class MainPage extends javax.swing.JFrame {
    elapsedTime=elapsedTime+1000;
    minutes = (elapsedTime/60000);
    seconds = (elapsedTime/1000) % 60;
+   
+        if (minutes % 5 == 0 && seconds == 0) {
+            try {
+                ala.Start();
+            } catch (LineUnavailableException | IOException | NullPointerException ex) {
+                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+ 
    seconds_string = String.format("%02d", seconds);
    minutes_string = String.format("%02d", minutes);
    ReadingTimer.setText(minutes_string+":"+seconds_string);
@@ -30,6 +49,15 @@ public class MainPage extends javax.swing.JFrame {
    elapsedTime=elapsedTime+1000;
    minutes = (elapsedTime/60000);
    seconds = (elapsedTime/1000) % 60;
+
+        if (minutes % 5 == 0 && seconds == 0) {
+            try {
+                ala.Start();
+            } catch (LineUnavailableException | IOException | NullPointerException ex) {
+                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }   
+        
    seconds_string = String.format("%02d", seconds);
    minutes_string = String.format("%02d", minutes);
    ThinkingTimer.setText(minutes_string+":"+seconds_string);
@@ -41,7 +69,16 @@ public class MainPage extends javax.swing.JFrame {
    elapsedTime=elapsedTime+1000;
    minutes = (elapsedTime/60000);
    seconds = (elapsedTime/1000) % 60;
-   seconds_string = String.format("%02d", seconds);
+   
+        if (minutes % 5 == 0 && seconds == 0) {
+            try {
+                ala.Start();
+            } catch (LineUnavailableException | IOException | NullPointerException ex) {
+                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }  
+        
+        seconds_string = String.format("%02d", seconds);
    minutes_string = String.format("%02d", minutes);
    CodingTimer.setText(minutes_string+":"+seconds_string);
   }
@@ -52,12 +89,29 @@ public class MainPage extends javax.swing.JFrame {
    elapsedTime=elapsedTime+1000;
    minutes = (elapsedTime/60000);
    seconds = (elapsedTime/1000) % 60;
+
+        if (minutes % 5 == 0 && seconds == 0) {
+            try {
+                ala.Start();
+            } catch (LineUnavailableException | IOException | NullPointerException ex) {
+                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
    seconds_string = String.format("%02d", seconds);
    minutes_string = String.format("%02d", minutes);
    DebugTimer.setText(minutes_string+":"+seconds_string);
   }
  });
-    public MainPage() {
+    public MainPage() throws UnsupportedAudioFileException{
+         try {
+             this.ala = new ring();
+         } catch (IOException ex) {
+             Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (LineUnavailableException ex) {
+             Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+         }
+       
         this.setIcon();
         this.setTitle("Problems Timer");
         this.setBounds(200,200,720, 560);
@@ -76,31 +130,35 @@ public class MainPage extends javax.swing.JFrame {
         ReadingTimer = new javax.swing.JLabel();
         NextThink = new javax.swing.JButton();
         ThinkingPanel = new javax.swing.JPanel();
-        Reading9 = new javax.swing.JLabel();
+        Thinking = new javax.swing.JLabel();
         ThinkingTimer = new javax.swing.JLabel();
         NextCod = new javax.swing.JButton();
         CodingPanel = new javax.swing.JPanel();
         CodingTimer = new javax.swing.JLabel();
         NextDeb = new javax.swing.JButton();
-        Reading10 = new javax.swing.JLabel();
+        Coding = new javax.swing.JLabel();
         DebugPanel = new javax.swing.JPanel();
         DebugTimer = new javax.swing.JLabel();
         End = new javax.swing.JButton();
-        Reading11 = new javax.swing.JLabel();
+        Debugging = new javax.swing.JLabel();
+        Title = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(740, 560));
-        setMinimumSize(new java.awt.Dimension(740, 560));
-        setPreferredSize(new java.awt.Dimension(740, 560));
+        setLocationByPlatform(true);
+        setMaximumSize(new java.awt.Dimension(750, 560));
+        setMinimumSize(new java.awt.Dimension(750, 560));
+        setPreferredSize(new java.awt.Dimension(750, 560));
         setResizable(false);
-        setSize(new java.awt.Dimension(740, 560));
+        setSize(new java.awt.Dimension(750, 560));
 
         MainPanel.setBackground(new java.awt.Color(0, 207, 207));
         MainPanel.setMaximumSize(new java.awt.Dimension(720, 560));
         MainPanel.setMinimumSize(new java.awt.Dimension(720, 560));
         MainPanel.setPreferredSize(new java.awt.Dimension(720, 560));
 
+        StartingBtn.setBackground(new java.awt.Color(0, 115, 139));
         StartingBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        StartingBtn.setForeground(new java.awt.Color(255, 255, 255));
         StartingBtn.setText("Start");
         StartingBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,8 +210,8 @@ public class MainPage extends javax.swing.JFrame {
 
         ThinkingPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        Reading9.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        Reading9.setText("Thinking");
+        Thinking.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        Thinking.setText("Thinking");
 
         ThinkingTimer.setFont(new java.awt.Font("Calibri", 0, 28)); // NOI18N
         ThinkingTimer.setText("00:00");
@@ -174,7 +232,7 @@ public class MainPage extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(ThinkingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(NextCod, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Reading9)
+                    .addComponent(Thinking)
                     .addComponent(ThinkingTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -182,7 +240,7 @@ public class MainPage extends javax.swing.JFrame {
             ThinkingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ThinkingPanelLayout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(Reading9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Thinking, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ThinkingTimer)
                 .addGap(34, 34, 34)
@@ -203,8 +261,8 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
-        Reading10.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        Reading10.setText("Coding");
+        Coding.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        Coding.setText("Coding");
 
         javax.swing.GroupLayout CodingPanelLayout = new javax.swing.GroupLayout(CodingPanel);
         CodingPanel.setLayout(CodingPanelLayout);
@@ -215,7 +273,7 @@ public class MainPage extends javax.swing.JFrame {
                     .addGroup(CodingPanelLayout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(CodingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Reading10, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Coding, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CodingTimer)))
                     .addGroup(CodingPanelLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
@@ -226,7 +284,7 @@ public class MainPage extends javax.swing.JFrame {
             CodingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CodingPanelLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(Reading10, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Coding, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CodingTimer)
                 .addGap(35, 35, 35)
@@ -239,7 +297,9 @@ public class MainPage extends javax.swing.JFrame {
         DebugTimer.setFont(new java.awt.Font("Calibri", 0, 28)); // NOI18N
         DebugTimer.setText("00:00");
 
+        End.setBackground(new java.awt.Color(171, 71, 68));
         End.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        End.setForeground(new java.awt.Color(255, 255, 255));
         End.setText("End");
         End.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,8 +307,8 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
 
-        Reading11.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        Reading11.setText("Debug");
+        Debugging.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        Debugging.setText("Debug");
 
         javax.swing.GroupLayout DebugPanelLayout = new javax.swing.GroupLayout(DebugPanel);
         DebugPanel.setLayout(DebugPanelLayout);
@@ -263,20 +323,24 @@ public class MainPage extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DebugPanelLayout.createSequentialGroup()
                         .addGroup(DebugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(DebugTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Reading11))
+                            .addComponent(Debugging))
                         .addContainerGap())))
         );
         DebugPanelLayout.setVerticalGroup(
             DebugPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DebugPanelLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(Reading11, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Debugging, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(DebugTimer)
                 .addGap(35, 35, 35)
                 .addComponent(End, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
+
+        Title.setFont(new java.awt.Font("Segoe Print", 1, 30)); // NOI18N
+        Title.setForeground(new java.awt.Color(255, 255, 255));
+        Title.setText("Problem Solving Stopwatch");
 
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
@@ -294,28 +358,30 @@ public class MainPage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(DebugPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(StartingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addGap(156, 156, 156)
+                        .addComponent(StartingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(MainPanelLayout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(Title)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGap(44, 44, 44)
+                .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(StartingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(84, 84, 84)
                         .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ReadingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ThinkingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CodingPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DebugPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(159, 159, 159))
+                    .addComponent(CodingPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DebugPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -361,7 +427,8 @@ public class MainPage extends javax.swing.JFrame {
      elapsedTime = 0;
      seconds = 0;
      minutes =0;
-    timerCoding.start();    }//GEN-LAST:event_NextCodActionPerformed
+    timerCoding.start();
+    }//GEN-LAST:event_NextCodActionPerformed
 
     private void NextDebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextDebActionPerformed
     timerCoding.stop();    
@@ -407,7 +474,11 @@ public class MainPage extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainPage().setVisible(true);
+                try {
+                    new MainPage().setVisible(true);
+                } catch (UnsupportedAudioFileException ex) {
+                    Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -416,10 +487,12 @@ public class MainPage extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Coding;
     private javax.swing.JPanel CodingPanel;
     private javax.swing.JLabel CodingTimer;
     private javax.swing.JPanel DebugPanel;
     private javax.swing.JLabel DebugTimer;
+    private javax.swing.JLabel Debugging;
     private javax.swing.JButton End;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JButton NextCod;
@@ -427,8 +500,6 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JButton NextThink;
     private javax.swing.JLabel Reading;
     private javax.swing.JLabel Reading1;
-    private javax.swing.JLabel Reading10;
-    private javax.swing.JLabel Reading11;
     private javax.swing.JLabel Reading2;
     private javax.swing.JLabel Reading3;
     private javax.swing.JLabel Reading4;
@@ -436,15 +507,16 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel Reading6;
     private javax.swing.JLabel Reading7;
     private javax.swing.JLabel Reading8;
-    private javax.swing.JLabel Reading9;
     private javax.swing.JPanel ReadingPanel;
     private javax.swing.JPanel ReadingPanel1;
     private javax.swing.JPanel ReadingPanel2;
     private javax.swing.JPanel ReadingPanel3;
     private javax.swing.JLabel ReadingTimer;
     private javax.swing.JButton StartingBtn;
+    private javax.swing.JLabel Thinking;
     private javax.swing.JPanel ThinkingPanel;
     private javax.swing.JLabel ThinkingTimer;
+    private javax.swing.JLabel Title;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
