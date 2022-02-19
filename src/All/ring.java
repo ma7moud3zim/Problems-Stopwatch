@@ -16,7 +16,6 @@ public class ring {
         public static File file = new File("ring.wav");
         AudioInputStream Ring = AudioSystem.getAudioInputStream(file);  
         Clip ringing = AudioSystem.getClip();
-        boolean t = true;
         boolean s = false;
         public ring() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
               ringing.open(this.Ring);

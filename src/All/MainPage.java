@@ -1,6 +1,7 @@
 
 package All;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,17 +20,43 @@ public class MainPage extends javax.swing.JFrame {
      long elapsedTime = 0;
      long seconds =0;
      long minutes =0;
+     long totalElapsed = 0;
+     long totalMin =0;
+     long totalSec = 0;
      String seconds_string = String.format("%02d", seconds);
      String minutes_string = String.format("%02d", minutes);
      public ring ala;
+     public TotalRing fiftyMin;
+    
      
+  Timer totalTimer = new Timer(1000, new ActionListener() {
+    @Override                   
+  public void actionPerformed(ActionEvent e) {
+      totalElapsed = totalElapsed+1000;
+      totalMin = (totalElapsed/60000);
+      totalSec = (totalElapsed/1000) % 60;
+ 
+        if (totalMin == 45) {
+            try {
+                fiftyMin.Start();
+            } catch (LineUnavailableException | IOException | NullPointerException ex) {
+                Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+ 
+   seconds_string = String.format("%02d", totalSec);
+   minutes_string = String.format("%02d", totalMin);
+   TotalTimer.setText(minutes_string+":"+seconds_string);
+  }
+ });
+  
   Timer timerReading = new Timer(1000, new ActionListener() {
     @Override                   
   public void actionPerformed(ActionEvent e) {
-   elapsedTime=elapsedTime+1000;
-   minutes = (elapsedTime/60000);
-   seconds = (elapsedTime/1000) % 60;
-   
+   elapsedTime = elapsedTime+1000;
+    minutes = (elapsedTime/60000);
+    seconds = (elapsedTime/1000) % 60;
+ 
         if (minutes % 5 == 0 && seconds == 0) {
             try {
                 ala.Start();
@@ -43,6 +70,7 @@ public class MainPage extends javax.swing.JFrame {
    ReadingTimer.setText(minutes_string+":"+seconds_string);
   }
  });
+  
   Timer timerThinking = new Timer(1000, new ActionListener() {
     @Override                   
   public void actionPerformed(ActionEvent e) {
@@ -106,9 +134,8 @@ public class MainPage extends javax.swing.JFrame {
     public MainPage() throws UnsupportedAudioFileException{
          try {
              this.ala = new ring();
-         } catch (IOException ex) {
-             Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
-         } catch (LineUnavailableException ex) {
+             this.fiftyMin = new TotalRing();
+         } catch (IOException | LineUnavailableException ex) {
              Logger.getLogger(MainPage.class.getName()).log(Level.SEVERE, null, ex);
          }
        
@@ -142,6 +169,9 @@ public class MainPage extends javax.swing.JFrame {
         End = new javax.swing.JButton();
         Debugging = new javax.swing.JLabel();
         Title = new javax.swing.JLabel();
+        TotalTimePanel = new javax.swing.JPanel();
+        TotalLapel = new javax.swing.JLabel();
+        TotalTimer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -342,46 +372,82 @@ public class MainPage extends javax.swing.JFrame {
         Title.setForeground(new java.awt.Color(255, 255, 255));
         Title.setText("Problem Solving Stopwatch");
 
+        TotalTimePanel.setBackground(new java.awt.Color(64, 162, 195));
+
+        TotalLapel.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        TotalLapel.setForeground(new java.awt.Color(255, 255, 255));
+        TotalLapel.setText("Total:");
+
+        TotalTimer.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        TotalTimer.setForeground(new java.awt.Color(255, 255, 255));
+        TotalTimer.setText("00:00");
+
+        javax.swing.GroupLayout TotalTimePanelLayout = new javax.swing.GroupLayout(TotalTimePanel);
+        TotalTimePanel.setLayout(TotalTimePanelLayout);
+        TotalTimePanelLayout.setHorizontalGroup(
+            TotalTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TotalTimePanelLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(TotalLapel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(TotalTimer, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
+        TotalTimePanelLayout.setVerticalGroup(
+            TotalTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TotalTimePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(TotalTimePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TotalLapel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TotalTimer))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
         MainPanel.setLayout(MainPanelLayout);
         MainPanelLayout.setHorizontalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
-                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MainPanelLayout.createSequentialGroup()
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, MainPanelLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(ReadingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ThinkingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(CodingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(DebugPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(StartingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(Title)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                        .addGap(52, 52, 52)
+                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addComponent(StartingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(TotalTimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(MainPanelLayout.createSequentialGroup()
+                                .addComponent(Title)
+                                .addGap(132, 132, 132)))))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         MainPanelLayout.setVerticalGroup(
             MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainPanelLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(StartingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(27, 27, 27)
                 .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(StartingBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(MainPanelLayout.createSequentialGroup()
-                        .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ReadingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ThinkingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(CodingPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DebugPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(67, Short.MAX_VALUE))
+                        .addGap(4, 4, 4)
+                        .addComponent(TotalTimePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(42, 42, 42)
+                .addGroup(MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ReadingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ThinkingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CodingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DebugPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -403,19 +469,33 @@ public class MainPage extends javax.swing.JFrame {
      timerThinking.stop();
      timerCoding.stop();
      timerDebug.stop();
+     totalTimer.stop();
+     TotalTimer.setText("00:00");
      ReadingTimer.setText("00:00");
+     ReadingPanel.setBackground(Color.orange);
+     ThinkingPanel.setBackground(Color.white);
+     CodingPanel.setBackground(Color.white);
+     DebugPanel.setBackground(Color.white);
      ThinkingTimer.setText("00:00");
      CodingTimer.setText("00:00");
      DebugTimer.setText("00:00");
-        
+     
      elapsedTime = 0;
      seconds = 0;
      minutes =0;
+     totalElapsed = 0;
+     totalMin = 0;
+     totalSec = 0;
      timerReading.start();
+     totalTimer.start();
     }//GEN-LAST:event_StartingBtnActionPerformed
 
     private void NextThinkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextThinkActionPerformed
     timerReading.stop();    
+     ReadingPanel.setBackground(Color.white);
+     ThinkingPanel.setBackground(Color.orange);
+     CodingPanel.setBackground(Color.white);
+     DebugPanel.setBackground(Color.white);
      elapsedTime = 0;
      seconds = 0;
      minutes =0;
@@ -423,7 +503,11 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_NextThinkActionPerformed
 
     private void NextCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextCodActionPerformed
-    timerThinking.stop();    
+    timerThinking.stop();  
+     ReadingPanel.setBackground(Color.white);
+     ThinkingPanel.setBackground(Color.white);
+     CodingPanel.setBackground(Color.orange);
+     DebugPanel.setBackground(Color.white);
      elapsedTime = 0;
      seconds = 0;
      minutes =0;
@@ -431,7 +515,11 @@ public class MainPage extends javax.swing.JFrame {
     }//GEN-LAST:event_NextCodActionPerformed
 
     private void NextDebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextDebActionPerformed
-    timerCoding.stop();    
+    timerCoding.stop();
+     ReadingPanel.setBackground(Color.white);
+     ThinkingPanel.setBackground(Color.white);
+     CodingPanel.setBackground(Color.white);
+     DebugPanel.setBackground(Color.orange);    
      elapsedTime = 0;
      seconds = 0;
      minutes =0;
@@ -443,6 +531,11 @@ public class MainPage extends javax.swing.JFrame {
     timerThinking.stop();
     timerCoding.stop();
     timerDebug.stop();
+    totalTimer.stop();
+    ReadingPanel.setBackground(Color.white);
+     ThinkingPanel.setBackground(Color.white);
+     CodingPanel.setBackground(Color.white);
+     DebugPanel.setBackground(Color.white);
      elapsedTime = 0;
      seconds = 0;
      minutes =0;
@@ -499,29 +592,16 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JButton NextDeb;
     private javax.swing.JButton NextThink;
     private javax.swing.JLabel Reading;
-    private javax.swing.JLabel Reading1;
-    private javax.swing.JLabel Reading2;
-    private javax.swing.JLabel Reading3;
-    private javax.swing.JLabel Reading4;
-    private javax.swing.JLabel Reading5;
-    private javax.swing.JLabel Reading6;
-    private javax.swing.JLabel Reading7;
-    private javax.swing.JLabel Reading8;
     private javax.swing.JPanel ReadingPanel;
-    private javax.swing.JPanel ReadingPanel1;
-    private javax.swing.JPanel ReadingPanel2;
-    private javax.swing.JPanel ReadingPanel3;
     private javax.swing.JLabel ReadingTimer;
     private javax.swing.JButton StartingBtn;
     private javax.swing.JLabel Thinking;
     private javax.swing.JPanel ThinkingPanel;
     private javax.swing.JLabel ThinkingTimer;
     private javax.swing.JLabel Title;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JLabel TotalLapel;
+    private javax.swing.JPanel TotalTimePanel;
+    private javax.swing.JLabel TotalTimer;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
