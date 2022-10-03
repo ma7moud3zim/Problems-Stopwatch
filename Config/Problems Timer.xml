@@ -2,28 +2,28 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>E:\Algorithms\Problems Timer\Problems_Timer.jar</jar>
-  <outfile>E:\Algorithms\Problems Timer\Problems Timer.exe</outfile>
-  <errTitle>Please, download Java first to use the program</errTitle>
+  <jar>E:\Algorithms\Problems Timer\dist\Problems_Timer.jar</jar>
+  <outfile>E:\Algorithms\Problems Timer.exe</outfile>
+  <errTitle></errTitle>
   <cmdLine></cmdLine>
-  <chdir></chdir>
+  <chdir>.</chdir>
   <priority>normal</priority>
   <downloadUrl>http://java.com/download</downloadUrl>
   <supportUrl></supportUrl>
-  <stayAlive>false</stayAlive>
-  <restartOnCrash>false</restartOnCrash>
+  <stayAlive>true</stayAlive>
+  <restartOnCrash>true</restartOnCrash>
   <manifest></manifest>
-  <icon>C:\Users\eng3z\OneDrive\Desktop\Icon.ico</icon>
+  <icon>E:\Algorithms\Problems Timer\src\Icon.ico</icon>
   <singleInstance>
-    <mutexName>Problems Timer</mutexName>
-    <windowTitle>Problems Timer</windowTitle>
+    <mutexName>Problems Stopwatch</mutexName>
+    <windowTitle></windowTitle>
   </singleInstance>
   <jre>
     <path></path>
     <bundledJre64Bit>false</bundledJre64Bit>
     <bundledJreAsFallback>false</bundledJreAsFallback>
-    <minVersion>1.8.0</minVersion>
-    <maxVersion></maxVersion>
+    <minVersion>1.8.0_111</minVersion>
+    <maxVersion>1.9.0</maxVersion>
     <jdkPreference>preferJre</jdkPreference>
     <runtimeBits>64/32</runtimeBits>
   </jre>
